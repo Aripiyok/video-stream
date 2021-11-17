@@ -52,7 +52,7 @@ async def ytdl(link):
 
 @Client.on_message(command(["p", f"p@{BOT_USERNAME}"]) & other_filters)
 async def play(c: Client, m: Message):
-    await message.delete()
+    await m.delete()
     replied = m.reply_to_message
     chat_id = m.chat.id
     keyboard = InlineKeyboardMarkup(
