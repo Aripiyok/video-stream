@@ -37,6 +37,7 @@ ydl_opts = {
 
 @Client.on_message(command(["song", f"song@{bn}"]) & ~filters.edited)
 def song(_, message):
+    await m.delete()
     query = " ".join(message.command[1:])
     m = message.reply("🔎 finding song...")
     ydl_ops = {"format": "bestaudio[ext=m4a]"}
@@ -51,7 +52,7 @@ def song(_, message):
         duration = results[0]["duration"]
 
     except Exception as e:
-        m.edit("❌ song not found.\n\nplease give a valid song name.")
+        m.edit("❌ music tidak ditemukan.\n\nberikan saya judul yg lengkap.")
         print(str(e))
         return
     m.edit("📥 downloading file...")
@@ -90,6 +91,7 @@ def song(_, message):
     command(["vsong", f"vsong@{bn}", "video", f"video@{bn}"]) & ~filters.edited
 )
 async def vsong(client, message):
+    await m.delete()
     ydl_opts = {
         "format": "best",
         "keepvideo": True,
